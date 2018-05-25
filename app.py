@@ -13,13 +13,14 @@ def shutdown_server():
 
 @app.route("/")
 def hello():
-     html = "<h3>Hostname: {hostname}</h3>"
+     html = "<h3>Hostname: {hostname} v2</h3>"
      return html.format(hostname=socket.gethostname())
 
 @app.route('/shutdown', methods=['POST'])
 def shutdown():
     shutdown_server()
-    return 'Server shutting down...'
+    html = 'Server {hostname} shutting down...'
+    return html.format(hostname=socket.gethostname())
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80)
